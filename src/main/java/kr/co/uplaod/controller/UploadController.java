@@ -30,17 +30,22 @@ public class UploadController {
 			Files.createDirectories(path);
 		}
 		
+		String fname="";
+		String orifname="";
 		for(MultipartFile file:files) {		// multiple에 있는 파일들을 하나씩 저장
 			if(!file.isEmpty()) {
 				String orifname1=file.getOriginalFilename();		// 원본이름	ex) exname.png
 				String fname1=System.currentTimeMillis()%100000+"_"+orifname1;  // 중복없애는작업    ex) 5124_exname.png
 				
 				Path save=Paths.get(uploadpath,fname1);		// 경로 추가   		ex) 위의 uploadpath경로+5124_exname.png
-				Files.copy(file.getInputStream(), save,StandardCopyOption.REPLACE_EXISTING);
+				Files.copy(file.getInputStream(), save,StandardCopyOption.REPLACE_EXISTING);	// 경로에 복사
+				fname=fname+fname1+"/";				// 1234_a.png/4567_b.png/
+				orifname=orifname+orifname1+"/";	// a.png/b.png/
 			}
 		}
-		
-		
+		dto.setFname(fname);			//dto에 fname set
+		dto.setOrifname(orifname);		//dto에 orifname set
+		// 다운로드 할 필요가 없는 게시판에서는 fname을 구할 필요없음
 		return "upload";
 	}
 }
