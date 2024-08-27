@@ -10,7 +10,7 @@
 		var preview=document.getElementById("preview");
 		preview.innerHTML=""; // 이전 미리보기 제거
 		
-		var files=document.querySelector('input[type=file]').files;
+		var files=document.getElementById("fileinput").files;
 		
 		for(i=0;i<files.length;i++) {
 			var file=files[i];
@@ -34,7 +34,7 @@
 </head>
 <body>
 	<form method="post" action="uploadOk" enctype="multipart/form-data">
-		<input type="file" name="file" multiple onchange="img()">
+		<input type="file" name="file" multiple onchange="img()" id="fileinput">
 		<input type="submit" value="업로드">
 	</form>
 	
