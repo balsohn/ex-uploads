@@ -21,6 +21,11 @@ public class UploadController {
 	}
 	
 	@RequestMapping("upload")
+	public String upload() {
+		return "upload";
+	}
+	
+	@RequestMapping("uploadOk")
 	public String upload(MultipartHttpServletRequest request) throws Exception {
 		List<MultipartFile> files=request.getFiles("file"); // name="file" 인걸 받아온다.
 		
