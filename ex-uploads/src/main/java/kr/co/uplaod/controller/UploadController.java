@@ -34,6 +34,7 @@ public class UploadController {
 		if(Files.notExists(path)) {			// 저장경로가 없다면. 저장경로를 만든다 라는 if문
 			Files.createDirectories(path);
 		}
+		  
 		
 		String fname="";
 		String orifname="";
